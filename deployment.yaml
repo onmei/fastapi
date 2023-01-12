@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongoconn
+  labels:
+    app: mongoconn
+  namespace: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongoconn
+  template:
+    metadata:
+      labels:
+        app: mongoconn
+    spec:
+      containers:
+        - name: mongoconn
+          imagePullPolicy: Always
+          image: ranfangxu/mongoconn
+          ports:
+            - containerPort: 8000
+
