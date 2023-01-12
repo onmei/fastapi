@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM python:3.11
-WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-COPY . .
-CMD ["python", "-m" , "motor.py"]
+WORKDIR /packet
+COPY ./requirements.txt /packet/requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r /packet/requirements.txt
+COPY ./app /packet/app
+CMD ["uvicorn", "app.main:app","--proxy-headers","--host", "0.0.0.0", "--port", "80"]
