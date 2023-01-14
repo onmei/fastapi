@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongoconn
+  name: fastapi
   labels:
-    app: mongoconn
-  namespace: mongo
+    app: fastapi
+  namespace: fastapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongoconn
+      app: fastapi
   template:
     metadata:
       labels:
-        app: mongoconn
+        app: fastapi
     spec:
       containers:
-        - name: mongoconn
+        - name: fastapi
           imagePullPolicy: Always
-          image: ranfangxu/mongoconn
+          image: ranfangxu/fastapi
           ports:
-            - containerPort: 8000
+            - containerPort: 80
 
